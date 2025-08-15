@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - FileManager</title>
+    <link rel="stylesheet" href="~/Content/_LayoutStyle.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <button id="toggle-btn">☰</button>
+    <div class="sidebar" id="sidebar">
+        <button id="close-btn">✖</button>
+        <div class="menu-links">
+            <a class="@(ViewContext.RouteData.Values["controller"].ToString() == "File" && ViewContext.RouteData.Values["action"].ToString() == "Upload" ? "active" : "")"
+               href="@Url.Action("Upload", "File")">File Upload</a>
+
+            <a class="@(ViewContext.RouteData.Values["controller"].ToString() == "File" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")"
+               href="@Url.Action("Index", "File")">File List</a>
+
+            <a class="@(ViewContext.RouteData.Values["controller"].ToString() == "Log" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")"
+               href="@Url.Action("Index", "Log")">Logs</a>
+        </div>
+    </div>
+    <div>
+
+
+        @if (TempData["Error"] != null || TempData["Message"] != null)
+        {
+            <script>
+                var errorMessage = '@TempData["Error"]';
+                var infoMessage = '@TempData["Message"]';
+            </script>
+        }
+
+    </div>
+
+
+    <div class="content" id="content">
+        @RenderBody()
+    </div>
+
+
+    <script src="~/Scripts/_LayoutScript.js"></script>
+</body>
+</html>

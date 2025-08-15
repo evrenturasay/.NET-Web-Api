@@ -1,0 +1,5 @@
+./vs
+.vs
+
+/FileManager.Web/obj/*
+/FileManager.Web/bin/*
